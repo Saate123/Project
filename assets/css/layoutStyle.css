@@ -1,0 +1,16 @@
+.parent {
+  width: 600px;
+  height: 600px;
+  background-color: blanchedalmond;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  position: absolute;
+}
+.parent .box2 {
+  width: 100px;
+  height: 100px;
+  color: blue;
+}
