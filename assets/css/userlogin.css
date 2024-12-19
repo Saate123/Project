@@ -76,3 +76,66 @@ img {
   margin-left: 38px;
   font-size: 25px;
 }
+
+.body {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightgray;
+}
+.body .right {
+  width: 50%;
+  height: 100%;
+  margin-left: 0px;
+}
+.body .right img {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  left: -66px;
+  top: -25px;
+  object-fit: fill;
+}
+.body .left {
+  width: 40%;
+  margin-left: 5%;
+  text-align: left;
+}
+.body .left form {
+  width: 100%;
+  text-align: center;
+}
+.body .left form h3 {
+  font-size: 20px;
+  line-height: 30px;
+  margin-top: 30px;
+}
+.body .left form p {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.body .left form p a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+.body .left form .use {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  text-align: center;
+  padding-left: 20px;
+  color: #4c1a57;
+  background-color: transparent;
+  border: 1px solid rgb(41, 40, 40);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.15);
+  font-size: 15px;
+  font-weight: bold;
+}
+.body .left form .use .fa-google {
+  color: black;
+  font-size: 18px;
+  margin-right: 10px;
+}
