@@ -74,7 +74,7 @@
           </form>
         </div>
         <div class="vendor-form" style="display: none">
-          <form action="" class="form-container">
+          <form action="" class="form-container" id="container">
             <button class="use">
               <i class="fa-brands fa-google"></i> Use Google Account
             </button>
@@ -141,7 +141,7 @@
     <script>
       const formSwitch = document.getElementById("form-switch");
       const userForm = document.querySelector(".user-form");
-      const vendorForm = document.querySelector(".vendor-form");
+      var vendorForm = document.querySelector(".vendor-form");
 
       formSwitch.addEventListener("change", () => {
         if (formSwitch.checked) {
@@ -154,18 +154,18 @@
       });
 
       // Get the form elements
-      const form = document.querySelector(".form-container");
-      const nameInput = document.querySelector('input[placeholder="Name"]');
-      const emailInput = document.querySelector('input[placeholder="Email"]');
-      const phoneInput = document.querySelector(
+      let form = document.querySelector(".form-container");
+      let nameInput = document.querySelector('input[placeholder="Name"]');
+      let emailInput = document.querySelector('input[placeholder="Email"]');
+      let phoneInput = document.querySelector(
         'input[placeholder="Phone-number"]'
       );
-      const passwordInput = document.querySelector(
+      let passwordInput = document.querySelector(
         'input[placeholder="Password "]'
       );
-      const eyeSlashIcon = document.querySelector(".fa-eye-slash");
-      const eyeIcon = document.querySelector(".fa-eye");
-      const signUpButton = document.querySelector(".sign");
+      let eyeSlashIcon = document.querySelector(".fa-eye-slash");
+      let eyeIcon = document.querySelector(".fa-eye");
+      let signUpButton = document.querySelector(".sign");
 
       // Add event listeners
       form.addEventListener("submit", handleSubmit);
@@ -215,6 +215,79 @@
         }
       }
 
+      function validateEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+      }
+
+      // Get the form elements
+      vendorForm = document.querySelector(".vendor-form");
+      form = vendorForm;
+      nameInput = form.querySelector('input[placeholder="Name"]');
+      brandInput = form.querySelector('input[placeholder="Brand name"]');
+      emailInput = form.querySelector('input[placeholder="Email"]');
+      phoneInput = form.querySelector('input[placeholder="Phone-number"]');
+      passwordInput = form.querySelector('input[placeholder="Password "]');
+      eyeSlashIcon = form.querySelector(".fa-eye-slash");
+      eyeIcon = form.querySelector(".fa-eye");
+      signUpButton = form.querySelector(".sign");
+
+      // Add event listeners
+      form.addEventListener("submit", handleVendorSubmit);
+      eyeSlashIcon.addEventListener("click", togglePasswordVisibility);
+      eyeIcon.addEventListener("click", togglePasswordVisibility);
+
+      // Function to handle vendor form submission
+      function handleVendorSubmit(event) {
+        event.preventDefault();
+        const name = nameInput.value.trim();
+        const brand = brandInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        // Validation
+        if (
+          name === "" ||
+          brand === "" ||
+          email === "" ||
+          phone === "" ||
+          password === ""
+        ) {
+          alert("Please fill in all fields.");
+          return;
+        }
+        if (!validateEmail(email)) {
+          alert("Invalid email address.");
+          return;
+        }
+        if (password.length < 8) {
+          alert("Password must be at least 8 characters long.");
+          return;
+        }
+
+        // Simulate successful registration
+        alert("Registration successful!");
+
+        // Optionally reset the form
+        // form.reset();
+      }
+
+      // Function to toggle password visibility
+      function togglePasswordVisibility() {
+        const passwordInputType = passwordInput.type;
+        if (passwordInputType === "text") {
+          passwordInput.type = "password";
+          eyeSlashIcon.style.display = "block";
+          eyeIcon.style.display = "none";
+        } else {
+          passwordInput.type = "text";
+          eyeSlashIcon.style.display = "none";
+          eyeIcon.style.display = "block";
+        }
+      }
+
+      // Function to validate email
       function validateEmail(email) {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(email);
