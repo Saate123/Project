@@ -202,19 +202,6 @@
         // form.reset();
       }
 
-      function togglePasswordVisibility() {
-        const passwordInputType = passwordInput.type;
-        if (passwordInputType === "text") {
-          passwordInput.type = "password";
-          eyeSlashIcon.style.display = "block";
-          eyeIcon.style.display = "none";
-        } else {
-          passwordInput.type = "text";
-          eyeSlashIcon.style.display = "none";
-          eyeIcon.style.display = "block";
-        }
-      }
-
       function validateEmail(email) {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return emailRegex.test(email);
@@ -273,17 +260,67 @@
         // form.reset();
       }
 
+      // Select the password input fields and toggle icons
+      const userPasswordInput = document.querySelector(
+        ".user-form input[type='password']"
+      );
+      const userEyeSlashIcon = document.querySelector(
+        ".user-form .fa-eye-slash"
+      );
+      const userEyeIcon = document.querySelector(".user-form .fa-eye");
+
+      const vendorPasswordInput = document.querySelector(
+        ".vendor-form input[type='password']"
+      );
+      const vendorEyeSlashIcon = document.querySelector(
+        ".vendor-form .fa-eye-slash"
+      );
+      const vendorEyeIcon = document.querySelector(".vendor-form .fa-eye");
+
+      // Add event listeners to the toggle icons
+      userEyeSlashIcon.addEventListener("click", () => {
+        togglePasswordVisibility(
+          userPasswordInput,
+          userEyeSlashIcon,
+          userEyeIcon
+        );
+      });
+
+      userEyeIcon.addEventListener("click", () => {
+        togglePasswordVisibility(
+          userPasswordInput,
+          userEyeSlashIcon,
+          userEyeIcon
+        );
+      });
+
+      vendorEyeSlashIcon.addEventListener("click", () => {
+        togglePasswordVisibility(
+          vendorPasswordInput,
+          vendorEyeSlashIcon,
+          vendorEyeIcon
+        );
+      });
+
+      vendorEyeIcon.addEventListener("click", () => {
+        togglePasswordVisibility(
+          vendorPasswordInput,
+          vendorEyeSlashIcon,
+          vendorEyeIcon
+        );
+      });
+
       // Function to toggle password visibility
-      function togglePasswordVisibility() {
+      function togglePasswordVisibility(passwordInput, eyeSlashIcon, eyeIcon) {
         const passwordInputType = passwordInput.type;
-        if (passwordInputType === "text") {
-          passwordInput.type = "password";
-          eyeSlashIcon.style.display = "block";
-          eyeIcon.style.display = "none";
-        } else {
+        if (passwordInputType === "password") {
           passwordInput.type = "text";
           eyeSlashIcon.style.display = "none";
           eyeIcon.style.display = "block";
+        } else {
+          passwordInput.type = "password";
+          eyeSlashIcon.style.display = "block";
+          eyeIcon.style.display = "none";
         }
       }
 
